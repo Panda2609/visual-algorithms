@@ -29,9 +29,14 @@ npm test
 npm run build
 ```
 
+
 ## Project Structure
 - `src/`: Main source code
-- `public/`: Static files
+	- `algorithms/`: Algorithm implementations and logic
+	- `components/`: Reusable React components
+	- `data/`: Data samples or configuration files
+	- `visualizers/`: Visualization modules for algorithms and data structures
+- `public/`: Static files (HTML, icons, manifest, etc.)
 
 ## Author
 Panda2609
