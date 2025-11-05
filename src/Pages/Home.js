@@ -1,4 +1,4 @@
-import FilterBar from "../components/filterBar/filterbar";
+import FilterBar from "../components/filterBar/FilterBar";
 
 function Home(){
     return(
