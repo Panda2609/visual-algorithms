@@ -36,6 +36,7 @@ npm run build
 	- `components/`: Reusable React components
 	- `data/`: Data samples or configuration files
 	- `visualizers/`: Visualization modules for algorithms and data structures
+	- `Pages/`: Pages to show components
 - `public/`: Static files (HTML, icons, manifest, etc.)
 
 ## Author
