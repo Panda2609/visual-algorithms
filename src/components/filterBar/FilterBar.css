@@ -1,0 +1,8 @@
+.bar-container{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    padding: 1rem;
+    background-color: red;
+}
+
