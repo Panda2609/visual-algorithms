@@ -1,8 +1,39 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
 .bar-container{
     display: flex;
     gap: 1rem;
+    justify-content: center;
     align-items: center;
     padding: 1rem;
-    background-color: red;
+    background-color: white;
+    width: 80%;
+    border-radius: 1rem;
 }
+
+.bar-container label {
+  display: flex;
+  flex-direction: column; /* pone el texto arriba y el select debajo */
+  gap: 6px;               /* separación entre texto y select */
+  align-items: flex-start;/* alinea el texto a la izquierda dentro del label */
+  font-weight: 600;       /* opcional: resalta el texto del label */
+  font-size: 0.95rem;
+}
+
+select{
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border: none;
+    background-color: white;
+}
+
+
 
