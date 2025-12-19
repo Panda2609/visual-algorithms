@@ -43,7 +43,7 @@ export function* bubbleSort(arr) {
         [array[j], array[j + 1]],
         `Comparing ${array[j]} and ${array[j + 1]}`,
         array,
-        { comparisons, swaps, pass: i + 1, totalPasses: n - 1 }
+        { comparisons, swaps, pass: i + 1, totalPasses: n - 1, sortedElements: i }
       );
 
       // Compare and swap if necessary
@@ -59,7 +59,7 @@ export function* bubbleSort(arr) {
           [array[j], array[j + 1]],
           `Swapping ${array[j + 1]} and ${array[j]}`,
           array,
-          { comparisons, swaps, pass: i + 1, totalPasses: n - 1 }
+          { comparisons, swaps, pass: i + 1, totalPasses: n - 1, sortedElements: i }
         );
       }
     }
