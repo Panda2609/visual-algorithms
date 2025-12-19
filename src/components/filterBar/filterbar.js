@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './FilterBar.css';
 
-function FilterBar({ onAlgorithmChange = () => {}, onSizeChange = () => {} }) {
+function FilterBar({ onAlgorithmChange = () => {} }) {
     // Algorithm categories instead of data structures
     const algorithmCategories = ['Sorting', 'Searching', 'Graphs', 'Trees'];
     
@@ -31,12 +31,9 @@ function FilterBar({ onAlgorithmChange = () => {}, onSizeChange = () => {} }) {
             // 'Post-Order Traversal',
         ],
     };
-    
-    const sizes = ['small', 'medium', 'large'];
 
     const [selectedCategory, setSelectedCategory] = useState(algorithmCategories[0]);
     const [selectedAlgorithm, setSelectedAlgorithm] = useState(algorithmsByCategory[algorithmCategories[0]][0]);
-    const [selectedSize, setSelectedSize] = useState(sizes[0]);
 
     const handleCategoryChange = (e) => {
         const category = e.target.value;
@@ -50,12 +47,6 @@ function FilterBar({ onAlgorithmChange = () => {}, onSizeChange = () => {} }) {
         const alg = e.target.value;
         setSelectedAlgorithm(alg);
         onAlgorithmChange(alg);
-    };
-
-    const handleSizeChange = (e) => {
-        const sz = e.target.value;
-        setSelectedSize(sz);
-        onSizeChange(sz);
     };
 
     return (
@@ -78,17 +69,8 @@ function FilterBar({ onAlgorithmChange = () => {}, onSizeChange = () => {} }) {
                         ))}
                     </select>
                 </label>
-
-                <label>
-                    Size:
-                    <select value={selectedSize} onChange={handleSizeChange}>
-                        {sizes.map((sz) => (
-                            <option key={sz} value={sz}>{sz}</option>
-                        ))}
-                    </select>
-                </label>
             </div>
-    </>
+        </>
     );
 }
 

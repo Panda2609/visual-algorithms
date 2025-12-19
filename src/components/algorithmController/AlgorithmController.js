@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ArrayVisualizer from '../../visualizers/ArrayVisualizer';
 import './AlgorithmController.css';
-import { getDatasetBySize } from '../../data/sampleData';
+import { getDataset } from '../../data/sampleData';
 import { FaPlay } from "react-icons/fa";
 import { MdOutlineNavigateNext } from "react-icons/md";
 import { GrFormPrevious } from "react-icons/gr";
@@ -49,12 +49,10 @@ const algorithmRegistry = {
  * 
  * Props:
  * - algorithm: Algorithm name to execute
- * - dataSize: Size of dataset ('small', 'medium', 'large')
  * - speed: Playback speed (1-5)
  */
 function AlgorithmController({ 
   algorithm = 'Bubble Sort', 
-  dataSize = 'small',
   speed = 2,
   onAlgorithmChange = () => {}
 }) {
@@ -71,12 +69,12 @@ function AlgorithmController({
   /**
    * Generate algorithm steps
    */
-  const generateSteps = (alg, size) => {
+  const generateSteps = (alg) => {
     setIsLoading(true);
     setError(null);
     
     try {
-      const dataset = getDatasetBySize(size);
+      const dataset = getDataset();
       let generator;
       let algorithmFound = false;
 
@@ -118,8 +116,8 @@ function AlgorithmController({
    * Initialize algorithm when props change
    */
   useEffect(() => {
-    generateSteps(algorithm, dataSize);
-  }, [algorithm, dataSize]);
+    generateSteps(algorithm);
+  }, [algorithm]);
 
   /**
    * Playback control

@@ -1,25 +1,12 @@
 /**
  * Sample datasets for algorithm visualization
- * Contains predefined arrays of different sizes and utility functions
+ * Standard size: 20 elements for consistent visualization
  */
 
-// Small dataset - ideal for step-by-step visualization
-export const smallDataset = [64, 25, 12, 22, 11, 90, 88, 45, 50, 32];
-
-// Medium dataset - good for seeing algorithm performance
-export const mediumDataset = [
+// Standard dataset - 20 elements for algorithm visualization
+export const standardDataset = [
   45, 38, 52, 41, 33, 27, 61, 48, 55, 49,
   35, 58, 42, 29, 63, 51, 37, 44, 30, 57
-];
-
-// Large dataset - for stress testing and comparing algorithms
-export const largeDataset = [
-  85, 42, 78, 61, 23, 91, 54, 34, 67, 89,
-  12, 47, 73, 28, 56, 81, 39, 65, 19, 50,
-  74, 36, 62, 88, 22, 68, 31, 77, 44, 93,
-  15, 59, 71, 26, 84, 48, 69, 33, 55, 87,
-  18, 60, 76, 29, 64, 41, 70, 37, 82, 51,
-  24, 79, 46, 58, 11, 72, 53, 35, 80, 63
 ];
 
 // Sorted dataset (for testing best/worst cases)
@@ -35,15 +22,6 @@ export const duplicatesDataset = [
 ];
 
 /**
- * All datasets organized by size
- */
-export const datasetsBySize = {
-  small: smallDataset,
-  medium: mediumDataset,
-  large: largeDataset,
-};
-
-/**
  * Special datasets for testing
  */
 export const specialDatasets = {
@@ -52,14 +30,16 @@ export const specialDatasets = {
   duplicates: duplicatesDataset,
 };
 
+// ============================================
+// DATASET UTILITY FUNCTIONS
+// ============================================
+
 /**
- * Get dataset by size name
- * @param {string} size - 'small', 'medium', or 'large'
- * @returns {number[]} - Copy of the dataset
+ * Get standard dataset
+ * @returns {number[]} - Copy of the standard dataset
  */
-export function getDatasetBySize(size) {
-  const dataset = datasetsBySize[size] || smallDataset;
-  return [...dataset]; // Return a copy to avoid mutations
+export function getDataset() {
+  return [...standardDataset];
 }
 
 /**
