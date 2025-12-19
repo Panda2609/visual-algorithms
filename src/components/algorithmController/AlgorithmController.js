@@ -1,14 +1,46 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ArrayVisualizer from '../../visualizers/ArrayVisualizer';
 import './AlgorithmController.css';
-import { bubbleSort } from '../../algorithms/bubbleSort';
-import { quickSort } from '../../algorithms/quickSort';
 import { getDatasetBySize } from '../../data/sampleData';
 import { FaPlay } from "react-icons/fa";
 import { MdOutlineNavigateNext } from "react-icons/md";
 import { GrFormPrevious } from "react-icons/gr";
 import { IoPauseSharp } from "react-icons/io5";
 import { RiResetLeftLine } from "react-icons/ri";
+
+// Import all sorting algorithms
+import { bubbleSort } from '../../algorithms/bubbleSort';
+import { quickSort } from '../../algorithms/quickSort';
+
+/**
+ * Algorithm registry - maps algorithm names to generator functions
+ * Easy to extend: just import the algorithm and add to the appropriate category
+ */
+const algorithmRegistry = {
+  Sorting: {
+    'Bubble Sort': bubbleSort,
+    'Quick Sort': quickSort,
+    // 'Selection Sort': selectionSort,
+    // 'Insertion Sort': insertionSort,
+    // 'Merge Sort': mergeSort,
+    // 'Heap Sort': heapSort,
+  },
+  Searching: {
+    // 'Binary Search': binarySearch,
+    // 'Linear Search': linearSearch,
+    // 'Jump Search': jumpSearch,
+  },
+  Graphs: {
+    // 'DFS': dfs,
+    // 'BFS': bfs,
+    // 'Dijkstra': dijkstra,
+  },
+  Trees: {
+    // 'In-Order Traversal': inOrderTraversal,
+    // 'Pre-Order Traversal': preOrderTraversal,
+    // 'Post-Order Traversal': postOrderTraversal,
+  },
+};
 
 /**
  * AlgorithmController Component
@@ -45,16 +77,19 @@ function AlgorithmController({
     try {
       const dataset = getDatasetBySize(size);
       let generator;
+      let algorithmFound = false;
 
-      switch (alg) {
-        case 'Bubble Sort':
-          generator = bubbleSort(dataset);
+      // Search through all categories to find the algorithm
+      for (const category in algorithmRegistry) {
+        if (algorithmRegistry[category][alg]) {
+          algorithmFound = true;
+          generator = algorithmRegistry[category][alg](dataset);
           break;
-        case 'Quick Sort':
-          generator = quickSort(dataset);
-          break;
-        default:
-          throw new Error(`Algorithm not implemented: ${alg}`);
+        }
+      }
+
+      if (!algorithmFound) {
+        throw new Error(`Algorithm not found: ${alg}`);
       }
 
       // Collect all steps from generator

@@ -2,22 +2,46 @@ import React, { useState } from 'react';
 import './FilterBar.css';
 
 function FilterBar({ onAlgorithmChange = () => {}, onSizeChange = () => {} }) {
-    const dataStructures = ['Array', 'Linked List', 'Tree'];
-    const algorithmsByStructure = {
-        Array: ['Bubble Sort', 'Quick Sort', 'Binary Search'],
-        'Linked List': ['Insertion', 'Merge', 'Search'],
-        Tree: ['DFS', 'BFS'],
+    // Algorithm categories instead of data structures
+    const algorithmCategories = ['Sorting', 'Searching', 'Graphs', 'Trees'];
+    
+    // Algorithms organized by category for scalability
+    const algorithmsByCategory = {
+        Sorting: [
+            'Bubble Sort',
+            'Quick Sort',
+            'Selection Sort',
+            'Insertion Sort',
+            'Merge Sort',
+            'Heap Sort',
+        ],
+        Searching: [
+            'Binary Search',
+            'Linear Search',
+            'Jump Search',
+        ],
+        Graphs: [
+            'DFS',
+            'BFS',
+            'Dijkstra',
+        ],
+        Trees: [
+            'In-Order Traversal',
+            'Pre-Order Traversal',
+            'Post-Order Traversal',
+        ],
     };
+    
     const sizes = ['small', 'medium', 'large'];
 
-    const [selectedStructure, setSelectedStructure] = useState(dataStructures[0]);
-    const [selectedAlgorithm, setSelectedAlgorithm] = useState(algorithmsByStructure[dataStructures[0]][0]);
+    const [selectedCategory, setSelectedCategory] = useState(algorithmCategories[0]);
+    const [selectedAlgorithm, setSelectedAlgorithm] = useState(algorithmsByCategory[algorithmCategories[0]][0]);
     const [selectedSize, setSelectedSize] = useState(sizes[0]);
 
-    const handleStructureChange = (e) => {
-        const s = e.target.value;
-        setSelectedStructure(s);
-        const firstAlg = (algorithmsByStructure[s] && algorithmsByStructure[s][0]) || '';
+    const handleCategoryChange = (e) => {
+        const category = e.target.value;
+        setSelectedCategory(category);
+        const firstAlg = (algorithmsByCategory[category] && algorithmsByCategory[category][0]) || '';
         setSelectedAlgorithm(firstAlg);
         onAlgorithmChange(firstAlg);
     };
@@ -38,10 +62,10 @@ function FilterBar({ onAlgorithmChange = () => {}, onSizeChange = () => {} }) {
         <>
             <div className='bar-container'>
                 <label>
-                    Structure:
-                    <select value={selectedStructure} onChange={handleStructureChange}>
-                        {dataStructures.map((s) => (
-                            <option key={s} value={s}>{s}</option>
+                    Category:
+                    <select value={selectedCategory} onChange={handleCategoryChange}>
+                        {algorithmCategories.map((category) => (
+                            <option key={category} value={category}>{category}</option>
                         ))}
                     </select>
                 </label>
@@ -49,7 +73,7 @@ function FilterBar({ onAlgorithmChange = () => {}, onSizeChange = () => {} }) {
                 <label>
                     Algorithm:
                     <select value={selectedAlgorithm} onChange={handleAlgorithmChange}>
-                        {(algorithmsByStructure[selectedStructure] || []).map((a) => (
+                        {(algorithmsByCategory[selectedCategory] || []).map((a) => (
                             <option key={a} value={a}>{a}</option>
                         ))}
                     </select>
