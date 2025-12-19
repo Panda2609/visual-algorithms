@@ -10,25 +10,25 @@ function FilterBar({ onAlgorithmChange = () => {}, onSizeChange = () => {} }) {
         Sorting: [
             'Bubble Sort',
             'Quick Sort',
-            'Selection Sort',
-            'Insertion Sort',
             'Merge Sort',
-            'Heap Sort',
+            // 'Selection Sort',
+            // 'Insertion Sort',
+            // 'Heap Sort',
         ],
         Searching: [
-            'Binary Search',
-            'Linear Search',
-            'Jump Search',
+            // 'Binary Search',
+            // 'Linear Search',
+            // 'Jump Search',
         ],
         Graphs: [
-            'DFS',
-            'BFS',
-            'Dijkstra',
+            // 'DFS',
+            // 'BFS',
+            // 'Dijkstra',
         ],
         Trees: [
-            'In-Order Traversal',
-            'Pre-Order Traversal',
-            'Post-Order Traversal',
+            // 'In-Order Traversal',
+            // 'Pre-Order Traversal',
+            // 'Post-Order Traversal',
         ],
     };
     
