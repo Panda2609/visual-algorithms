@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import ArrayVisualizer from '../../visualizers/ArrayVisualizer';
 import './AlgorithmController.css';
 import { bubbleSort } from '../../algorithms/bubbleSort';
+import { quickSort } from '../../algorithms/quickSort';
 import { getDatasetBySize } from '../../data/sampleData';
 import { FaPlay } from "react-icons/fa";
 import { MdOutlineNavigateNext } from "react-icons/md";
@@ -48,6 +49,9 @@ function AlgorithmController({
       switch (alg) {
         case 'Bubble Sort':
           generator = bubbleSort(dataset);
+          break;
+        case 'Quick Sort':
+          generator = quickSort(dataset);
           break;
         default:
           throw new Error(`Algorithm not implemented: ${alg}`);
