@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ArrayVisualizer from '../../visualizers/ArrayVisualizer';
 import './AlgorithmController.css';
-import { getDataset } from '../../data/sampleData';
+import { getDataset, generateRandomDataset } from '../../data/sampleData';
 import { FaPlay } from "react-icons/fa";
 import { MdOutlineNavigateNext } from "react-icons/md";
 import { GrFormPrevious } from "react-icons/gr";
 import { IoPauseSharp } from "react-icons/io5";
 import { RiResetLeftLine } from "react-icons/ri";
+import { MdRefresh } from "react-icons/md";
 
 // Import all sorting algorithms
 import { bubbleSort } from '../../algorithms/bubbleSort';
@@ -62,6 +63,7 @@ function AlgorithmController({
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [customSpeed, setCustomSpeed] = useState(speed);
+  const [currentDataset, setCurrentDataset] = useState(() => getDataset());
   
   const playInterval = useRef(null);
   const algorithmRef = useRef(null);
@@ -74,7 +76,7 @@ function AlgorithmController({
     setError(null);
     
     try {
-      const dataset = getDataset();
+      const dataset = [...currentDataset];
       let generator;
       let algorithmFound = false;
 
@@ -117,7 +119,7 @@ function AlgorithmController({
    */
   useEffect(() => {
     generateSteps(algorithm);
-  }, [algorithm]);
+  }, [algorithm, currentDataset]);
 
   /**
    * Playback control
@@ -207,6 +209,14 @@ function AlgorithmController({
     setCustomSpeed(parseInt(e.target.value));
   };
 
+  /**
+   * Generate new random dataset and re-run algorithm
+   */
+  const handleGenerateNewArray = () => {
+    const newDataset = generateRandomDataset(20, 100);
+    setCurrentDataset(newDataset);
+  };
+
   return (
     <div className="algorithm-controller">
       {error && (
@@ -271,6 +281,15 @@ function AlgorithmController({
                 disabled={isLoading || currentStepIndex >= steps.length - 1}
               >
                 <MdOutlineNavigateNext />
+              </button>
+
+              <button
+                className="control-btn"
+                onClick={handleGenerateNewArray}
+                title="Generate New Array"
+                disabled={isLoading}
+              >
+                <MdRefresh />
               </button>
             </div>
 
