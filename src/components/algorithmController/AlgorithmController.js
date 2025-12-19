@@ -11,6 +11,7 @@ import { RiResetLeftLine } from "react-icons/ri";
 // Import all sorting algorithms
 import { bubbleSort } from '../../algorithms/bubbleSort';
 import { quickSort } from '../../algorithms/quickSort';
+import { mergeSort } from '../../algorithms/mergeSort';
 
 /**
  * Algorithm registry - maps algorithm names to generator functions
@@ -20,9 +21,9 @@ const algorithmRegistry = {
   Sorting: {
     'Bubble Sort': bubbleSort,
     'Quick Sort': quickSort,
+    'Merge Sort': mergeSort,
     // 'Selection Sort': selectionSort,
     // 'Insertion Sort': insertionSort,
-    // 'Merge Sort': mergeSort,
     // 'Heap Sort': heapSort,
   },
   Searching: {

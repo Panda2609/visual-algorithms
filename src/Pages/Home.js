@@ -1,5 +1,5 @@
 import { useState } from "react";
-import FilterBar from "../components/filterBar/FilterBar";
+import FilterBar from "../components/filterBar/Filterbar";
 import AlgorithmController from "../components/algorithmController/AlgorithmController";
 import './Home.css';
 
